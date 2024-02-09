@@ -21,7 +21,6 @@
 		PreparedStatement pstm;
 		ResultSet rs;
 		String query = QueriesProvider.queryForWardenInfo;
-		System.out.println(query);
 	%>
 	<div class="container">
 		<div class="row">
@@ -81,8 +80,8 @@
 						<tr class="table-dark">
 							<th scope="col">Sr #</th>
 							<th scope="col">Image</th>
-							<th scope="col">Name</th>
-							<th scope="col">Enrollment Number</th>
+							<th scope="col">Warden Name</th>
+							<th scope="col">Phone Number</th>
 							<th scope="col">Email</th>
 							<th scope="col">Branch</th>
 							<th scope="col">Year</th>
@@ -135,9 +134,7 @@
 												event.preventDefault();
 												$.ajax({type : 'POST',
 															url : "../Components/TableFormat.jsp",
-															data : $(
-																	"#filter-form")
-																	.serialize(),
+															data : $("#filter-form").serialize(),
 															success : function(response) {
 																if(response.trim()==="0"){
 																	Swal.fire({
@@ -147,9 +144,7 @@
 																		});
 																	return;
 																}
-																document
-																.querySelector("#listContainer")
-																.innerHTML = response.trim()
+																document.querySelector("#listContainer").innerHTML = response.trim()
 															}
 														})
 											})

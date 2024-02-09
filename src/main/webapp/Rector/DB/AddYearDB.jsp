@@ -12,7 +12,7 @@ PreparedStatement pstm = con.prepareStatement(query);
 pstm.setString(1, className);
 
 try {
-	out.print(pstm.executeUpdate());
+	out.print(pstm.executeUpdate() + " Added");
 } catch (Exception e) {
 	e.printStackTrace();
 	out.print(0);

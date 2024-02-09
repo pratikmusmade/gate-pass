@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//asscets//images//";
+String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
 String query = "insert into student(firstName, middleName, lastName, enrolment_number, address, email, pass, student_image, branch_id, year_id) values (?,?,?,?,?,?,?,?,?,?)";
 MultipartRequest m = new MultipartRequest(request, path, 1024 * 1024 * 1024);
 Connection con = ConnectionProvider.getConnection();

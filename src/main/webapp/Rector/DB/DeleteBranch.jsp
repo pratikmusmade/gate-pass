@@ -1,22 +1,20 @@
-
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.gatePass.helper.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"%>
 <%
-String branchName = request.getParameter("branchName");
+
 Connection con = ConnectionProvider.getConnection();
-
-String query = "insert into branch(branch_name) values(?)";
+String branchId = request.getParameter("branchId");
+String query = "DELETE FROM branch WHERE id=?";
 PreparedStatement pstm = con.prepareStatement(query);
-pstm.setString(1, branchName);
-
+pstm.setString(1, branchId);
 try {
-	out.print(pstm.executeUpdate()+" Added");
+	out.print(pstm.executeUpdate());
 } catch (Exception e) {
 	e.printStackTrace();
 	out.print(0);
-}
+} 
+
 %>

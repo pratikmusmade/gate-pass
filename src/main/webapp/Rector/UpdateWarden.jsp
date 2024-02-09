@@ -19,10 +19,8 @@
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-8">
-				<h1>Update Student</h1>
 				<%
 				String wardenId = request.getParameter("wardenId");
-				System.out.println(" ===> " + wardenId);
 				Connection con = ConnectionProvider.getConnection();
 				String query = QueriesProvider.queryForWardenInfo + "where warden.id = " + wardenId;
 				PreparedStatement pstm = con.prepareStatement(query);
@@ -31,10 +29,34 @@
 				ResultSet rs2;
 
 				while (rs.next()) {
-					System.out.println("Phone Numbwer ==> " + rs.getString("phoneNumber"));
 				%>
 				<form class="row g-3" novalidate method="post" id="updateWarden"
 					enctype="multipart/form-data">
+					<div class="col-md-7">
+						<h1>Update Warden</h1>
+					</div>
+
+					<div class="col-md-5">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-5">
+									<label for="validationServer08" class="form-label">
+										Image</label> <img src="<%=rs.getString("warden_image")%>"
+										class="img-thumbnail" alt="...">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col">
+									<label for="validationServer08" class="form-label">
+										Warden Image</label> <input type="file" class="form-control is-valid"
+										id="validationServer08" name="wardenImage" required />
+									<div class="valid-feedback">Looks good!</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 					<div class="col-md-4">
 						<label for="validationServer01" class="form-label">First
@@ -74,7 +96,6 @@
 							required>
 							<option selected value="<%=rs.getString("year_id")%>"><%=rs.getString("year_name")%></option>
 							<%
-							System.out.print("select * from acc_year where id <>" + rs.getString("year_id"));
 
 							pstm2 = con.prepareStatement("select * from acc_year where acc_year.id <> " + rs.getString("year_id"));
 							rs2 = pstm2.executeQuery();
@@ -120,17 +141,7 @@
 
 
 
-					<div class="col-md-1">
-						<label for="validationServer08" class="form-label"> Image</label>
-						<img src="<%=rs.getString("warden_image")%>"
-							class="img-thumbnail m-0 p-0" alt="...">
-					</div>
-					<div class="col-md-4">
-						<label for="validationServer08" class="form-label">
-							Student Image</label> <input type="file" class="form-control is-valid"
-							id="validationServer08" name="studentImage" required />
-						<div class="valid-feedback">Looks good!</div>
-					</div>
+
 
 					<div class="col-md-6">
 						<label for="validationEmail" class="form-label">Email</label> <input
@@ -163,7 +174,18 @@
 						</div>
 						<div class="valid-feedback">Looks good!</div>
 					</div>
-
+					<div class="col-md-6">
+						<label for="validationServer06" class="form-label">Warden Status</label>
+						<select class="form-select is-invalid" id="validationServer06"
+							aria-describedby="validationServer06Feedback" name="wardenStatus"
+							required>
+							<option selected value="unavailable">unavailable</option>
+							<option selected value="available">available</option>
+						</select>
+						<div id="validationServer06Feedback" class="invalid-feedback">
+							Please select a valid state.</div>
+					</div>
+					
 					<div class="col-12">
 						<button class="btn btn-primary" type="submit">Update</button>
 					</div>
@@ -180,6 +202,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#updateWarden").submit(function(event){
+				console.log("Inside")
 				event.preventDefault();
 				let f = new FormData($(this)[0]);
 				
@@ -193,15 +216,15 @@
 					cache : false,
 					success: function(res){
 						console.log(res)
-						if(res.trim() === "1"{
+						if(res.trim() === "1"){
 							 Swal.fire({
 								 title : "Student Added Successfully",
 								 text : "Click ok to continue !",
 								 icon : "success"
 								 }).then(()=>{
-								/*  window.location.reload(); */
+								window.location.reload();
 								 });
-						})
+						}
 							
 							else{
 								 Swal.fire({
