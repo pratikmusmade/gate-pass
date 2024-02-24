@@ -12,14 +12,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<jsp:include page="../Components/Header.jsp"></jsp:include>
+
 </head>
 <body>
 
+	<jsp:include page="../Components/Header.jsp"></jsp:include>
 	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
 
-	<div class="container mt-3">
+	<div class="container mt-3" style="margin-left: 350px;">
 		<h3>Form Validation</h3>
 
 
@@ -35,9 +36,11 @@
 					placeholder="warden_ id" name="warden_id" readonly required>
 			</div>
 
-			<div>
-				<label for="dateInput">Date:</label> <input type="date"
-					id="dateInput" name="dateInput">
+			<div class="mb-3 mt-3 col-md-6">
+				<label for="dateInput" class="form-label">Date</label> <input type="date"
+					id="dateInput" name="dateInput" class="form-control" required>
+<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
 
 			</div>
 
