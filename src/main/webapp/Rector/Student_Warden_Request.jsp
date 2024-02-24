@@ -5,7 +5,37 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%/* if(session.getAttribute("studentsession") == null){
+  System.out.print("Null hghf");
+  response.sendRedirect("StudentLogin.jsp"); */
+%>
 
+ <%
+/*  }  */
+ 
+ %>
+<%
+	String studentId = "1";
+	String wardenId = "1";
+	String wardenFullName = "";
+	String studetntFullName = "";
+	ResultSet rs ;
+	String query = " select firstName, middleName, lastName from student where id=" + studentId;
+	String query1 = " select firstName, middleName, lastName from warden where id=" + wardenId;
+	Connection con = ConnectionProvider.getConnection();
+	PreparedStatement pstm = con.prepareStatement(query);
+	rs = pstm.executeQuery();
+	while(rs.next()){
+		studetntFullName += rs.getString("firstName") + rs.getString("middleName") + rs.getString("lastName");
+	}
+	pstm = con.prepareStatement(query1);
+	rs = pstm.executeQuery();
+
+	while(rs.next()){
+		wardenFullName += rs.getString("firstName") + rs.getString("middleName") + rs.getString("lastName");
+	}
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,12 +56,14 @@
 		<form action="DB/RequestStudentDB.jsp" class="was-validated">
 			<div class="mb-3 mt-3 col-md-6">
 				<label for="student_Name" class="form-label">Student Name</label> <input
-					type="text" class="form-control" id="student_id"
+					type="text" class="form-control" id="student_id" 
+					value="<%=studetntFullName %>"
 					placeholder="student_id" name="student_id" readonly required>
 			</div>
 			<div class="mb-3 mt-3 col-md-6">
 				<label for="student_Name" class="form-label">Warden Name</label> <input
 					type="text" class="form-control" id="warden_id"
+					value="<%=wardenFullName %>"
 					placeholder="warden_ id" name="warden_id" readonly required>
 			</div>
 
@@ -40,11 +72,8 @@
 					id="dateInput" name="dateInput">
 
 			</div>
-
-
-
-
-			<div class="mb-3 col-md-6">
+            
+            <div class="mb-3 col-md-6">
 				<label for="comment" class="form-label">Message</label>
 				<textarea class="form-control" rows="5" id="EnterMessage"
 					name="EnterMessage" required></textarea>
