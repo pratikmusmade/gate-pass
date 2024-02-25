@@ -110,6 +110,9 @@
 							<td><a type="button" class="btn btn-outline-warning"
 								href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
 
+							<td><a type="button" class="btn btn-outline-warning "
+									href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
+							
 							</td>
 							<td><a type="button" class="btn btn-outline-danger"
 								href="DB/DeleteStudentDB.jsp?studentId=<%=rs.getString("id")%>">Delete</a>
