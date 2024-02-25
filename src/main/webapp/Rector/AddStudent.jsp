@@ -11,15 +11,15 @@
 <title>Bootstrap demo</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
-<body>
+<body style="background-image: url('../assects/images/circle.svg')" style= "background-repeat:norepeat">
 	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 	<%
 	Connection con = ConnectionProvider.getConnection();
 	PreparedStatement pstm;
 	ResultSet rs;
 	%>
-	<div class="container pt-3">
-		<div class="row">
+	<div class="container mt-4">
+		<div class="row shadow bg-dark text-white  p-3" style="margin-right:200px ;margin-left:200px ">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-8">
 				<h1>Add Student</h1>

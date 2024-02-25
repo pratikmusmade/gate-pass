@@ -107,7 +107,7 @@
 							<td><%=rs.getString("email")%></td>
 							<td><%=rs.getString("branch_name")%></td>
 							<td><%=rs.getString("year_name")%></td>
-							<td><a type="button" class="btn btn-outline-warning"
+							<td><a type="button" class="btn btn-outline-warning "
 									href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
 							
 							</td>
