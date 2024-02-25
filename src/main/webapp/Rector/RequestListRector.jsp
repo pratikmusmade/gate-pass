@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="com.gatePass.helper.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
@@ -31,7 +31,7 @@
 
 						<select class="form-select" aria-label="Default select example"
 							id="SelectedStatus">
-							<option selected value="0">Select Request Status</option>
+							<option selected value="0">--- Select Request Status ---</option>
 							<%
 							Connection con1 = ConnectionProvider.getConnection();
 							PreparedStatement pstm = con1.prepareStatement("SELECT DISTINCT status FROM request");
@@ -44,10 +44,7 @@
 							}
 							%>
 						</select>
-						<div class="col-lg-1" style="margin-top: -40px;margin-left: 290px;">
-
-							<button type="submit" class="btn btn-primary">Filter</button>
-						</div>
+						
 					</div>
 				
 					
@@ -62,10 +59,10 @@
 				<th>Student Name</th>
 				<th>Date</th>
 				<th>Message</th>
-				<th>Request Status</th>
+				<th>Status Update</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody  id="statusResponse">
 			<%
 			Connection con = ConnectionProvider.getConnection();
 			PreparedStatement stmt = con.prepareStatement("select * from request");
@@ -88,11 +85,34 @@
 			%>
 		</tbody>
 	</table>
-
-
 	
-
-	
-
+ <script>
+		$(document).ready(function() {
+			$('#SelectedStatus').change(function() {
+				var selectedStatus = $(this).val();
+						
+				$.ajax(
+							{
+							url:"StudentRequestDataRector.jsp",
+							type:"get",
+							data:"type="+$(this).val(),
+							success:function(r){
+								if(r.trim()!="")
+									{
+									
+									
+									$("#statusResponse").html(r);
+									}
+									
+							}
+						
+						});
+				
+				
+				
+				
+			});
+		});
+	</script> 
 </body>
 </html>

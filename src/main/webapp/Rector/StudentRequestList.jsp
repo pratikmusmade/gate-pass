@@ -27,11 +27,11 @@
 		<form method="post" id="filter-form">
 		
 
-					<div class="col-lg-2 " style="float: right;margin-right: 80px">
+					<div class="col-lg-3 " style="float: right;margin-right: 80px">
 
 						<select class="form-select" aria-label="Default select example"
 							id="SelectedStatus">
-							<option selected value="0">Select Request Status</option>
+							<option selected value="0">--- Select Request Status ---</option>
 							<%
 							Connection con1 = ConnectionProvider.getConnection();
 							PreparedStatement pstm = con1.prepareStatement("SELECT DISTINCT status FROM request");
@@ -44,10 +44,7 @@
 							}
 							%>
 						</select>
-						<div class="col-lg-1" style="margin-top: -40px;margin-left: 220px;">
-
-							<button type="submit" class="btn btn-primary">Filter</button>
-						</div>
+						
 					</div>
 				
 					
@@ -62,11 +59,11 @@
 				<th>Student Name</th>
 				<th>Date</th>
 				<th>Message</th>
-				<th>Status Action</th>
+				<th id="statusToggleColumn">Status Action</th>
 				<th>Status Update</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody  id="statusResponse">
 			<%
 			Connection con = ConnectionProvider.getConnection();
 			PreparedStatement stmt = con.prepareStatement("select * from request");
@@ -93,55 +90,41 @@
 			%>
 		</tbody>
 	</table>
-	</div>
-
-	<!-- <script>
+	
+ <script>
 		$(document).ready(function() {
 			$('#SelectedStatus').change(function() {
 				var selectedStatus = $(this).val();
-
-				alert('Selected Status: ' + selectedStatus);
+						
+				$.ajax(
+							{
+							url:"StudentRequestData.jsp",
+							type:"get",
+							data:"type="+$(this).val(),
+							success:function(r){
+								if(r.trim()!="")
+									{
+									
+									if(selectedStatus=="Accepted" || selectedStatus=="Rejected")
+										{
+										$("#statusToggleColumn").hide();
+										
+										}
+									else{
+										$("#statusToggleColumn").show();
+									}
+									$("#statusResponse").html(r);
+									}
+									
+							}
+						
+						});
+				
+				
+				
+				
 			});
 		});
-	</script> -->
-
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$("#filter-form")
-									.submit(
-											function(event) {
-												event.preventDefault();
-
-												$
-														.ajax({
-															type : 'POST',
-															url : "../Components/TableFormat.jsp",
-															data : $(
-																	"#filter-form")
-																	.serialize(),
-															success : function(
-																	response) {
-																if (response
-																		.trim() === "0") {
-																	Swal
-																			.fire({
-																				title : "Data not found !!",
-																				text : "Click ok to continue ",
-																				icon : "error"
-																			});
-																	return;
-																}
-																document
-																		.querySelector("#listContainer").innerHTML = response
-																		.trim()
-															}
-														})
-											})
-						})
-	</script>
-
-
+	</script> 
 </body>
 </html>

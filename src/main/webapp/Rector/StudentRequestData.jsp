@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.gatePass.helper.ConnectionProvider"%>
+    <%@page import="com.gatePass.helper.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -9,37 +9,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Student Request List</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+<title>Insert title here</title>
 </head>
 <body>
 
-	<jsp:include page="../Components/Header.jsp"></jsp:include>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
-
-	<div class="container mt-3">
-		<h2>Sneha</h2>
-		<p>Student Request Table</p>
-
-	</div>
-	<br>
-	<br>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Sr No.</th>
-				<th>Student Name</th>
-				<th>Date</th>
-				<th>Message</th>
-				<th>Request Status</th>
-			</tr>
-		</thead>
+<table class="table table-striped">
+		
 		<tbody>
 			<%
 			Connection con = ConnectionProvider.getConnection();
-			PreparedStatement stmt = con.prepareStatement("select * from request where status = 'Accepted'");
+			PreparedStatement stmt = con.prepareStatement("select * from request where status = ?");
+			stmt.setString(1,request.getParameter("type"));
 			ResultSet rs = stmt.executeQuery();
 
 			int i = 1;
@@ -50,7 +31,14 @@
 				<td><%=rs.getString("student_id")%></td>
 				<td><%=rs.getString("request_date")%></td>
 				<td><%=rs.getString("message")%></td>
+				<%if(request.getParameter("type").equals("pending")){ %>
+				<td><a type="button" class="btn btn-success"
+					href="updateRequestStatus.jsp?id=<%=rs.getString("id")%>&type=pending">Accept</a>
+					<a type="button" class="btn btn-danger"
+					href="updateRequestStatus.jsp?id=<%=rs.getString("id")%>&type=rejected">Reject</a>
+				</td>
 				
+				<%} %>
 				<td><a><%=rs.getString("status")%></a></td>
 			</tr>
 			<%
@@ -61,9 +49,6 @@
 	</table>
 
 
-	
-
-	
 
 </body>
 </html>
