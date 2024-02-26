@@ -23,7 +23,7 @@
 					<div class="mb-3" style="margin-left: -140px">
 						<label for="exampleInput" class="form-label" >Enter Branch</label>
 						<input type="text" class="form-control" id="exampleInput"
-							aria-describedby="textHelp" style="width: 500px" name="branchName" />
+							aria-describedby="textHelp" style="width: 500px" name="branchName"  required/>
 					</div>
 
 					<button type="submit" class="btn btn-primary rounded rounded-pill px-4 mt-4"
