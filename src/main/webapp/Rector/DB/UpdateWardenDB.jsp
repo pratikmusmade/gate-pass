@@ -8,7 +8,7 @@
 <%
 String query = "";
 String wardenId = request.getParameter("wardenId");
-String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
+String path = "/Users/snehajature/git/gate-passProject/src/main/webapp/assects/images";
 MultipartRequest m = new MultipartRequest(request, path, 1024 * 1024 * 1024);
 String filePath = m.getFilesystemName("wardenImage");
 System.out.println(filePath);
