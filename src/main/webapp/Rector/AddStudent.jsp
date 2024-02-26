@@ -12,7 +12,6 @@
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
 <body style="background-image: url('../assects/images/circle.svg')" style= "background-repeat:norepeat">
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 	<%
 	Connection con = ConnectionProvider.getConnection();
 	PreparedStatement pstm;
@@ -70,7 +69,7 @@
 							%>
 						</select>
 						<div id="validationServer05Feedback" class="invalid-feedback">
-							Please select a valid state.</div>
+							Please select a valid Year.</div>
 					</div>
 
 					<div class="col-md-3">
@@ -90,7 +89,7 @@
 							%>
 						</select>
 						<div id="validationServer06Feedback" class="invalid-feedback">
-							Please select a valid state.</div>
+							Please select a valid Branch.</div>
 					</div>
 
 
@@ -118,7 +117,7 @@
 							aria-describedby="validationServer03Feedback" name="email"
 							required />
 						<div id="validationServer03Feedback" class="invalid-feedback">
-							Please provide a valid email.</div>
+							Please provide valid email-id.</div>
 					</div>
 
 
@@ -129,7 +128,7 @@
 							aria-describedby="validationServer03Feedback" name="password"
 							required />
 						<div id="validationServer03Feedback" class="invalid-feedback">
-							Please provide a valid password.</div>
+							Please enter valid password.</div>
 					</div>
 
 					<div class="col-md-6">
