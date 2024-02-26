@@ -18,9 +18,9 @@
 	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 	<%
 	Connection con = ConnectionProvider.getConnection();
-		PreparedStatement pstm;
-		ResultSet rs;
-		String query = QueriesProvider.queryForStudentInfo + "order by id";
+	PreparedStatement pstm;
+	ResultSet rs;
+	String query = QueriesProvider.queryForStudentInfo + "order by id";
 	%>
 	<div class="container">
 		<div class="row">
@@ -107,6 +107,9 @@
 							<td><%=rs.getString("email")%></td>
 							<td><%=rs.getString("branch_name")%></td>
 							<td><%=rs.getString("year_name")%></td>
+							<td><a type="button" class="btn btn-outline-warning"
+								href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
+
 							<td><a type="button" class="btn btn-outline-warning "
 									href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
 							
@@ -136,22 +139,28 @@
 											function(event) {
 												event.preventDefault();
 
-												$.ajax({
+												$
+														.ajax({
 															type : 'POST',
 															url : "../Components/TableFormat.jsp",
 															data : $(
 																	"#filter-form")
 																	.serialize(),
-															success : function(response) {
-																if(response.trim()==="0"){
-																	Swal.fire({
-																		  title: "Data not found !!",
-																		  text: "Click ok to continue ",
-																		  icon: "error"
-																		});
+															success : function(
+																	response) {
+																if (response
+																		.trim() === "0") {
+																	Swal
+																			.fire({
+																				title : "Data not found !!",
+																				text : "Click ok to continue ",
+																				icon : "error"
+																			});
 																	return;
 																}
-																document.querySelector("#listContainer").innerHTML = response.trim()
+																document
+																		.querySelector("#listContainer").innerHTML = response
+																		.trim()
 															}
 														})
 											})

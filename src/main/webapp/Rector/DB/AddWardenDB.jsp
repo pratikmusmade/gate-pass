@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
+String path = "/Users/snehajature/git/gate-passProject/src/main/webapp/assects/images";
 String query = QueriesProvider.insertIntoWarden;
 System.out.print(query);
 MultipartRequest m = new MultipartRequest(request, path, 1024 * 1024 * 1024);
