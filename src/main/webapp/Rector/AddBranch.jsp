@@ -12,7 +12,6 @@
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
 	<div class="container p-xl-4">
 		<div class="row shadow" style="height: 300px;width: 700px; margin-left: 280px;margin-top: 20px">

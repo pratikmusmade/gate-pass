@@ -9,13 +9,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap demo</title>
+<title>Student List</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 <style type="text/css">
 </style>
 </head>
 <body>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 	<%
 	Connection con = ConnectionProvider.getConnection();
 	PreparedStatement pstm;
