@@ -11,23 +11,22 @@
 <title>Bootstrap demo</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
-<body style="background-color: grey">
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
+<body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8 mt-5 p-2">
+	<div class="container p-xl-4">
+		<div class="row shadow" style="height: 300px;width: 700px; margin-left: 280px;margin-top: 20px">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 mt-5 p-2">
 				<form action="DB/AddBranchDB.jsp" id="addBranch">
 					<h1>Add Branch</h1>
-					<div class="mb-3">
-						<label for="exampleInput" class="form-label">Enter Branch</label>
+					<div class="mb-3" style="margin-left: -140px">
+						<label for="exampleInput" class="form-label" >Enter Branch</label>
 						<input type="text" class="form-control" id="exampleInput"
-							aria-describedby="textHelp" name="branchName" />
+							aria-describedby="textHelp" style="width: 500px" name="branchName"  required/>
 					</div>
 
-					<button type="submit" class="btn btn-primary px-4"
-						id="branch-submit-btn">Add Branch</button>
+					<button type="submit" class="btn btn-primary rounded rounded-pill px-4 mt-4"
+						id="branch-submit-btn" style="margin-left: 50px">Add Branch</button>
 					<button type="button" class="btn btn-danger" id="cancleBtn"
 						style="display: none">Cancel</button>
 
@@ -36,16 +35,16 @@
 		</div>
 	</div>
 
-	<div class="container mt-5">
-		<div class="row">
+	<div class="container mt-5" style="margin-right:200px">
+		<div class="row ">
 			<div class="col-lg-3"></div>
-			<div class="col-lg-6">
+			<div class="col-lg-8 ">
 				<h2>Branch List</h2>
 
 
-				<table class="table  table-bordered">
+				<table class="table table-striped table-hover ">
 					<thead>
-						<tr>
+						<tr class="table-dark">
 							<th scope="col">Sr .</th>
 							<th scope="col">Branch</th>
 							<th scope="col">Operation</th>
@@ -63,10 +62,10 @@
 						<tr>
 							<th scope="row"><%=rs.getString("id")%></th>
 							<td><%=rs.getString("branch_name")%></td>
-							<td><button type="button" class="btn btn-outline-warning"
+							<td><button type="button" class="btn btn-outline-warning rounded rounded-pill"
 									onclick="updateBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name")%>')">Update</button>
 								&nbsp &nbsp
-								<button type="button" class="btn btn-outline-danger"
+								<button type="button" class="btn btn-outline-danger rounded rounded-pill"
 									onclick="delteBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name") %> ')"
 									id="deleteBranch">Delete</button></td>
 						</tr>

@@ -12,7 +12,6 @@
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
 	<div class="container">
 		<div class="row">
@@ -23,7 +22,7 @@
 					<div class="mb-3">
 						<label for="exampleInput" class="form-label">Enter Branch</label>
 						<input type="text" class="form-control" id="exampleInput"
-							aria-describedby="textHelp" name="branchName" />
+							aria-describedby="textHelp" name="branchName" required/>
 					</div>
 
 					<button type="submit" class="btn btn-primary px-4">Submit</button>
