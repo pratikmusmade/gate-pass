@@ -28,9 +28,11 @@
 					enctype="multipart/form-data">
 					<div class="col-md-4">
 						<label for="validationServer01" class="form-label">First
-							name</label> <input type="text" class="form-control is-valid"
+							name</label> <input type="text" class="form-control "
 							id="validationServer01" name="firstName" required />
 						<div class="valid-feedback">Looks good!</div>
+						<div id="validationServer03Feedback" class="invalid-feedback">
+							Please provide a valid email.</div>
 					</div>
 					<div class="col-md-4">
 						<label for="validationServer02" class="form-label">Middle

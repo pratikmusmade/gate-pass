@@ -129,13 +129,10 @@
 
 	<script type="text/javascript">
 		$(document)
-				.ready(
-						function() {
+				.ready(function() {
 							$("#filter-form")
-									.submit(
-											function(event) {
+									.submit(function(event) {
 												event.preventDefault();
-
 												$.ajax({
 															type : 'POST',
 															url : "../Components/TableFormat.jsp",
@@ -143,6 +140,7 @@
 																	"#filter-form")
 																	.serialize(),
 															success : function(response) {
+																console.log(response)
 																if(response.trim()==="0"){
 																	Swal.fire({
 																		  title: "Data not found !!",

@@ -5,7 +5,12 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%
-String branchName = request.getParameter("branchName");
+	
+	
+String studentName = request.getParameter("studentName");
+System.out.print(studentName);
+out.println(studentName);
+/*
 Connection con = ConnectionProvider.getConnection();
 
 String query = "insert into branch(branch_name) values(?)";
@@ -17,5 +22,6 @@ try {
 } catch (Exception e) {
 	e.printStackTrace();
 	out.print(0);
-}
+ }
+*/
 %>
