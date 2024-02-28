@@ -12,7 +12,6 @@
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
 	<div class="container">
 		<div class="row">

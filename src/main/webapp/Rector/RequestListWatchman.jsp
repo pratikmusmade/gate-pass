@@ -16,7 +16,6 @@
 <body>
 
 	<jsp:include page="../Components/Header.jsp"></jsp:include>
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
 
 
 	<div class="container mt-3">
@@ -59,11 +58,5 @@
 			%>
 		</tbody>
 	</table>
-
-
-	
-
-	
-
 </body>
 </html>
