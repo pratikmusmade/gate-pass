@@ -6,18 +6,25 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Bootstrap demo</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
-<body>
+<body style="background-image: url('../assects/images/circle.svg')"
+	style="background-repeat:norepeat">
 	<%
 	Connection con = ConnectionProvider.getConnection();
 	PreparedStatement pstm;
 	ResultSet rs;
 	%>
+	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
 	<div class="container pt-3">
 		<div class="row">
 			<div class="col-lg-2"></div>

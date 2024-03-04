@@ -4,7 +4,11 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>

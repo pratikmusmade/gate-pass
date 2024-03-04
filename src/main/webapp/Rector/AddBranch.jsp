@@ -1,10 +1,15 @@
+<%@page import="com.gatePass.helper.ConnectionProvider"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="com.mysql.cj.xdevapi.Statement"%>
-<%@page import="com.gatePass.helper.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,75 +17,80 @@
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
 <body>
+	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
+	<main>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div
+					class="col-sm-8 mt-3 p-2 pt-0 border border-dark border-2 rounded alert-secondary">
+					<form class="p-3 border-2  rounded" action="DB/AddBranchDB.jsp"
+						id="addBranch" name="myForm">
+						<h1></h1>
+						<div class="mb-3">
+							<label for="exampleInput"
+								class="form-label w-100 h1 bg-dark text-white p-2 rounded-3">Add
+								Branch</label> <input type="text" class="form-control mt-3"
+								id="exampleInput" aria-describedby="textHelp" name="branchName"
+								required />
 
-	<div class="container p-xl-4">
-		<div class="row shadow" style="height: 300px;width: 700px; margin-left: 280px;margin-top: 20px">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4 mt-5 p-2">
-				<form action="DB/AddBranchDB.jsp" id="addBranch">
-					<h1>Add Branch</h1>
-					<div class="mb-3" style="margin-left: -140px">
-						<label for="exampleInput" class="form-label" >Enter Branch</label>
-						<input type="text" class="form-control" id="exampleInput"
-							aria-describedby="textHelp" style="width: 500px" name="branchName"  required/>
-					</div>
+						</div>
 
-					<button type="submit" class="btn btn-primary rounded rounded-pill px-4 mt-4"
-						id="branch-submit-btn" style="margin-left: 50px">Add Branch</button>
-					<button type="button" class="btn btn-danger" id="cancleBtn"
-						style="display: none">Cancel</button>
-
-				</form>
+						<button type="submit" class="btn btn-primary px-4"
+							id="branch-submit-btn">Add Branch</button>
+						<button type="button" class="btn btn-danger" id="cancleBtn"
+							style="display: none">Cancel</button>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="container mt-5" style="margin-right:200px">
-		<div class="row ">
-			<div class="col-lg-3"></div>
-			<div class="col-lg-8 ">
-				<h2>Branch List</h2>
+		<div class="container mt-4">
+			<div class="row justify-content-center">
 
 
-				<table class="table table-striped table-hover ">
-					<thead>
-						<tr class="table-dark">
-							<th scope="col">Sr .</th>
-							<th scope="col">Branch</th>
-							<th scope="col">Operation</th>
-							<!-- 							<th scope="col"></th>
+				<div class="col-lg-8 shadow">
+					<h2>Branch List</h2>
+
+
+					<table class="table  table-bordered table-info table-striped">
+						<thead>
+							<tr class="table-dark">
+								<th scope="col">Sr .</th>
+								<th scope="col">Branch</th>
+								<th scope="col">Operation</th>
+								<!-- 							<th scope="col"></th>
  -->
-						</tr>
-					</thead>
-					<tbody>
-						<%
-						Connection con = ConnectionProvider.getConnection();
-						PreparedStatement stmt = con.prepareStatement("select * from branch");
-						ResultSet rs = stmt.executeQuery();
-						while (rs.next()) {
-						%>
-						<tr>
-							<th scope="row"><%=rs.getString("id")%></th>
-							<td><%=rs.getString("branch_name")%></td>
-							<td><button type="button" class="btn btn-outline-warning rounded rounded-pill"
-									onclick="updateBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name")%>')">Update</button>
-								&nbsp &nbsp
-								<button type="button" class="btn btn-outline-danger rounded rounded-pill"
-									onclick="delteBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name") %> ')"
-									id="deleteBranch">Delete</button></td>
-						</tr>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+							Connection con = ConnectionProvider.getConnection();
+							PreparedStatement stmt = con.prepareStatement("select * from branch");
+							ResultSet rs = stmt.executeQuery();
+							while (rs.next()) {
+							%>
+							<tr>
+								<th scope="row"><%=rs.getString("id")%></th>
+								<td><%=rs.getString("branch_name")%></td>
+								<td><button type="button" class="btn btn-warning"
+										onclick="updateBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name")%>')">Update</button>
+									&nbsp &nbsp
+									<button type="button" class="btn btn-danger"
+										onclick="delteBranch(<%=rs.getString("id")%>,'<%=rs.getString("branch_name")%> ')"
+										id="deleteBranch">Delete</button></td>
+							</tr>
 
-						<%
-						}
-						%>
-					</tbody>
-				</table>
+							<%
+							}
+							%>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<jsp:include page="../Components/Footer.jsp"></jsp:include>
-
+		<jsp:include page="../Components/Footer.jsp"></jsp:include>
+	</main>
 
 	<script type="text/javascript">
 	
@@ -182,6 +192,9 @@
           });
         });
       });
+      
+      
+      
     </script>
 
 </body>

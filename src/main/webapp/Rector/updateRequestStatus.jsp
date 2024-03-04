@@ -7,7 +7,11 @@
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
 
-
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <%
 String StatusId = request.getParameter("id");
 String type = request.getParameter("type");

@@ -34,4 +34,11 @@ public class QueriesProvider {
 			+ "lastName  = ? ," + "address  = ? ," + "email  = ? ," + "pass  = ? ," + "phoneNumber  = ? ,"
 			+ "warden_status  = ? ," + "branch_id = ? ," + "year_id = ? ";
 
+	public static String studentRequestDetail = " SELECT " + "s.id AS student_id, " + "s.firstName, " + "s.middleName, "
+			+ "s.lastName, " + "s.enrolment_number, " + "s.address, " + "s.email, " + "s.pass, " + "s.student_image, "
+			+ "b.branch_name, " + "ay.year_name, " + "r.id AS request_id, " + "r.message AS request_message, "
+			+ "r.warden_id, " + "r.current_date AS request_current_date, " + "r.request_date, "
+			+ "r.status AS request_status " + " FROM " + " student AS s " + " JOIN "
+			+ "branch AS b ON s.branch_id = b.id " + " JOIN " + " acc_year AS ay ON s.year_id = ay.id " + " JOIN "
+			+ " request AS r ON s.id = r.student_id; " + " where r.id = ? ";
 }

@@ -6,7 +6,11 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
-
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

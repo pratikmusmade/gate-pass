@@ -5,6 +5,11 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +23,7 @@
 	PreparedStatement pstm;
 	ResultSet rs;
 	%>
+	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
 	<div class="container mt-4">
 		<div class="row shadow bg-dark text-white  p-3"
 			style="margin-right: 200px; margin-left: 200px">
@@ -298,19 +304,10 @@ document.getElementById(targetedValue).innerHTML=msg
 
 
 function valid(targetedValue){
-
  event.target.classList.remove("is-invalid")
 event.target.classList.add("is-valid")
 document.getElementById(targetedValue).innerHTML=""
 }
-
-
-	
-	
-	
-
-		
-		
 		
 	</script>
 </body>

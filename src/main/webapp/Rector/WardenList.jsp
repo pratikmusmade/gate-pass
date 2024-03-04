@@ -6,6 +6,11 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("RectorLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,19 +19,22 @@
 <style type="text/css">
 </style>
 </head>
-<body>
+<body style="background-image: url('../assects/images/circle.svg')"
+	style="background-repeat:norepeat">
 	<%
 	Connection con = ConnectionProvider.getConnection();
-		PreparedStatement pstm;
-		ResultSet rs;
-		String query = QueriesProvider.queryForWardenInfo;
+	PreparedStatement pstm;
+	ResultSet rs;
+	String query = QueriesProvider.queryForWardenInfo;
 	%>
+	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<form method="post" id="filter-form">
 					<div class="container-fulid">
 						<div class="row mt-4 mb-3">
+	<h1 class="text-white">Warden List</h1>
 
 							<div class="col-lg-7"></div>
 							<div class="col-lg-2 ">
@@ -106,7 +114,7 @@
 							<td><%=rs.getString("branch_name")%></td>
 							<td><%=rs.getString("year_name")%></td>
 							<td><a type="button" class="btn btn-outline-warning"
-									href="UpdateWarden.jsp?wardenId=<%=rs.getString("id")%>">Update</a>
+								href="UpdateWarden.jsp?wardenId=<%=rs.getString("id")%>">Update</a>
 							</td>
 							<td><a type="button" class="btn btn-outline-danger"
 								href="DB/DeleteWardenDB.jsp?wardenId=<%=rs.getString("id")%>">Delete</a>
@@ -129,21 +137,31 @@
 				.ready(
 						function() {
 							$("#filter-form")
-									.submit(function(event) {
+									.submit(
+											function(event) {
 												event.preventDefault();
-												$.ajax({type : 'POST',
+												$
+														.ajax({
+															type : 'POST',
 															url : "../Components/TableFormat.jsp",
-															data : $("#filter-form").serialize(),
-															success : function(response) {
-																if(response.trim()==="0"){
-																	Swal.fire({
-																		  title: "Data not found !!",
-																		  text: "Click ok to continue ",
-																		  icon: "error"
-																		});
+															data : $(
+																	"#filter-form")
+																	.serialize(),
+															success : function(
+																	response) {
+																if (response
+																		.trim() === "0") {
+																	Swal
+																			.fire({
+																				title : "Data not found !!",
+																				text : "Click ok to continue ",
+																				icon : "error"
+																			});
 																	return;
 																}
-																document.querySelector("#listContainer").innerHTML = response.trim()
+																document
+																		.querySelector("#listContainer").innerHTML = response
+																		.trim()
 															}
 														})
 											})
