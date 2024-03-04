@@ -11,8 +11,7 @@
 				class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll  nav-underline"
 				style="--bs-scroll-height: 100px;">
 				<li class="nav-item"><a class="nav-link " aria-current="page"
-					href="WardenLogin.jsp">Home</a></li>
-
+					href="WatchmanNavBar.jsp">Home</a></li>
 			</ul>
 			<button class="btn btn-outline-danger border-2 " onclick="logout()">
 				<span class="fw-bolder text-white">Logout</span> <span
@@ -35,7 +34,7 @@
 				if(res.isConfirmed){
 					      $.ajax({
 					        type: "POST",
-					        url: "DB/WardenLoginDB.jsp",
+					        url: "DB/WatchManLoginDB.jsp",
 					        data:{logoutRequest:1},
 					        success: function (response) { 
 					        	console.log(response.trim())

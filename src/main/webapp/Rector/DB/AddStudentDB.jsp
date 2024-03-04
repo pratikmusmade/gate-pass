@@ -8,11 +8,11 @@
 /* String path = "C://Users//A//git//gate-passProject//src//main//webapp//assects//images";
  */
  
- String path = "/Users/snehajature/git/gate-passProject/src/main/webapp/assects/images";
-
- 
-/* //String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
+/*  String path = "/Users/snehajature/git/gate-passProject/src/main/webapp/assects/images";
  */
+ 
+ String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
+ 
 String query = "insert into student(firstName, middleName, lastName, enrolment_number, address, email, pass, student_image, branch_id, year_id) values (?,?,?,?,?,?,?,?,?,?)";
 MultipartRequest m = new MultipartRequest(request, path, 1024 * 1024 * 1024);
 Connection con = ConnectionProvider.getConnection();

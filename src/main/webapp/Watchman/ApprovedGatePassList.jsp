@@ -4,16 +4,22 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
+<%
+if(session.getAttribute("user") == null){
+	  response.sendRedirect("WatchmanLogin.jsp"); 
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Student Request List</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
+
 </head>
 <body style="background-image: url('../assects/images/circle.svg')"
 	style="background-repeat:norepeat">
-	<jsp:include page="../Components/NavBar.jsp"></jsp:include>
+<jsp:include page="../Components/WatchmanNavBar.jsp"></jsp:include>
 	<div class="container mt-3">
 		<div class="row m-0">
 			<div class="col">
@@ -250,12 +256,12 @@
 	              text: "Click OK to continue!",
 	              icon: "success",
 	            }).then((res) => {
-	              viewRequest(requestId,gatePassId);
+	             window.location.reload()
 	            });
 	          } else {
 	            Swal.fire({
 	              icon: "error",
-	              title: "Invalid Secrate Key",
+	              title: "Soething Went Wrong !!",
 	              text: response.trim().slice(1),
 	            });
 	          }

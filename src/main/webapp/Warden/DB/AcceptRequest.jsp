@@ -7,7 +7,7 @@
 <%
 //Generate OTP Code
 int OTP_LENGTH = 5;
-String ALLOWED_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*-+=<>";
+String ALLOWED_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 StringBuilder otp = new StringBuilder(OTP_LENGTH);
 SecureRandom random = new SecureRandom();
 for (int i = 0; i < OTP_LENGTH; i++) {

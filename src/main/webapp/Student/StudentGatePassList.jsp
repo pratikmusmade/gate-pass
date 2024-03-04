@@ -22,7 +22,7 @@
 	<jsp:include page="../Components/StudentNavBar.jsp"></jsp:include>
 
 	<div class="container">
-		<h1 class="p-2 rounded-3 text-white fw-bold">Request List</h1>
+		<h1 class="p-2 rounded-3 text-white fw-bold">Gate Pass List</h1>
 		<div class="row mt-5">
 			<div class="col-lg-1"></div>
 
