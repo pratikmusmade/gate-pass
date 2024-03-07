@@ -16,12 +16,18 @@ public class QueriesProvider {
 			+ " inner join acc_year on warden.year_id = acc_year.id ";
 
 	public static String queryForStudentInfoWithBranchAndYearId = "select " + "student.id, " + "student.firstName, "
-			+ "student.middleName, " + "student.lastName, " + "student.enrolment_number, " + "student.address, "
-			+ "student.email, " + "student.pass, " + "student.student_image, " + "student.branch_id,"
+			+ "student.middleName, "
+			+ "student.lastName, " 
+			+ "student.enrolment_number, " 
+			+ "student.address, "
+			+ "student.email, "			
+			+ "student.phone_number,"  
+			+ "student.pass, " + "student.student_image, " + "student.branch_id,"
 			+ "branch.branch_name, " + "student.year_id," + "acc_year.year_name " + "from student "
 			+ "inner join branch on student.branch_id = branch.id "
 			+ "inner join acc_year on student.year_id = acc_year.id ";
-
+	
+	
 	public static String queryForUpdatingStudent = "UPDATE student SET" + " firstName = ?," + " middleName = ?,"
 			+ " lastName = ?,  " + " enrolment_number = ?," + " address = ?," + " email = ?," + " pass = ?,"
 			+ " branch_id = ?," + " year_id = ?";

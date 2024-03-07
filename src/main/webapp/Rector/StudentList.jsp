@@ -23,6 +23,7 @@ if(session.getAttribute("user") == null){
 	style="background-repeat:norepeat">
 	<%
 	Connection con = ConnectionProvider.getConnection();
+	System.out.println(QueriesProvider.queryForStudentInfo);
 	PreparedStatement pstm;
 	ResultSet rs;
 	String query = QueriesProvider.queryForStudentInfo + "order by id";

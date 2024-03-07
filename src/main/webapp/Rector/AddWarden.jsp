@@ -29,10 +29,10 @@ if(session.getAttribute("user") == null){
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-8">
-				<h1>Add Warden</h1>
+				<h1 class="text-white mb-5" >Add Warden</h1>
 
-				<form class="row g-3" novalidate method="post" id="addWaredn"
-					enctype="multipart/form-data">
+				<form class="row g-3 text-white shadow bg-dark text-white p-3" novalidate method="post" id="addWaredn"
+					enctype="multipart/form-data" >
 					<div class="col-md-4">
 						<label for="validationServer01" class="form-label">First
 							name</label> <input type="text" class="form-control"
@@ -56,7 +56,7 @@ if(session.getAttribute("user") == null){
 
 				
 
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<label for="validationServer05" class="form-label">Year</label> <select
 							class="form-select " id="validationServer05"
 							aria-describedby="validationServer05Feedback" name="yearId"
@@ -75,7 +75,7 @@ if(session.getAttribute("user") == null){
 						 <small class="text-danger" id="year-validation"></small>
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<label for="validationServer06" class="form-label">Branch</label>
 						<select class="form-select " id="validationServer06"
 							aria-describedby="validationServer06Feedback" name="branchId"
@@ -91,16 +91,17 @@ if(session.getAttribute("user") == null){
 							}
 							%>
 						</select>
-						<small class="text-danger" id="branch-validation"></small>
+						<small class="text-danger" id="branch-validation" ></small>
 					</div>
 
 
 
 					<div class="col-md-6">
 						<label for="validationServer07" class="form-label">Phone
-							Number</label> <input type="number" class="form-control "
-							id="validationServer07" name="phoneNumber"  onblur="validate(event,'phone-validation')" required /> <small
-								class="text-danger" id="phone-validation"></small>
+									Number</label> <input type="number" class="form-control "
+									id="validationServer07" name="phoneNumber"
+									onblur="validate(event,'phone-validation')" required /> <small
+									class="text-danger" id="phone-validation"></small>
 					</div>
 
 
@@ -132,11 +133,12 @@ if(session.getAttribute("user") == null){
 								class="text-danger" id="password-validation"></small>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<label for="floatingTextarea" class="form-label">Enter
 							Address</label>
 						<div class="form-floating">
-							<textarea class="form-control "
+							<textarea class="form-control"
+								style="height: 8rem"
 								placeholder="Leave a comment here" id="floatingTextarea"
 								name="address" onblur="validate(event,'address-validation')"></textarea>
 						</div>
@@ -170,7 +172,7 @@ if(session.getAttribute("user") == null){
 						console.log(response.trim())
 						if (response.trim() === "1") {
 							Swal.fire({
-								title : "Student Added Successfully",
+								title : "Warden Added Successfully",
 								text : "Click ok to continue !",
 								icon : "success"
 							}).then(()=>{
@@ -195,8 +197,8 @@ if(session.getAttribute("user") == null){
 	    const enrollmentNumber= document.myForm.enrollmentNumber
 	    const yearId = document.myForm.yearId
 	   const branchId = document.myForm.branchId
-	    const phoneNumber = document.myForm.phoneNumber
-	    const studentImage = document.myForm.studentImage
+	   const phoneNumber = document.myForm.phoneNumber
+	   const studentImage = document.myForm.studentImage
 	    const email = document.myForm.email
 	    const password =document.myForm.password
 	    const address = document.myForm.address

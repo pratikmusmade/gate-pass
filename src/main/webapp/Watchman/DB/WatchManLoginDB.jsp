@@ -2,6 +2,7 @@
 String userName = request.getParameter("userName");
 String password = request.getParameter("password");
 String logoutRequest = request.getParameter("logoutRequest");
+
 userName = (userName != null) ? userName : "";
 password = (password != null) ? password : "";
 logoutRequest = (logoutRequest != null) ? logoutRequest : "";

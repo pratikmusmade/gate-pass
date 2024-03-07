@@ -7,8 +7,8 @@
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%
-if(session.getAttribute("user") == null){
-	  response.sendRedirect("RectorLogin.jsp"); 
+if (session.getAttribute("user") == null) {
+	response.sendRedirect("RectorLogin.jsp");
 }
 %>
 <!DOCTYPE html>
@@ -33,19 +33,44 @@ if(session.getAttribute("user") == null){
 
 				while (rs.next()) {
 				%>
-				<form class="row g-3" novalidate method="post" id="updateWarden"
+				<h1>Update Warden</h1>
+				<form class="row g-3" method="post" id="updateWarden"
 					enctype="multipart/form-data">
 					<div class="col-md-7">
-						<h1>Update Warden</h1>
+						<div class="col">
+							<label for="validationServer01" class="form-label">First
+								name</label> <input type="text" class="form-control is-valid"
+								id="validationServer01" name="firstName"
+								value="<%=rs.getString("firstName")%>" required />
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+						<div class="col">
+							<label for="validationServer02" class="form-label">Middle
+								name</label> <input type="text" class="form-control is-valid"
+								id="validationServer02" name="middleName"
+								value="<%=rs.getString("middleName")%>" required />
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
+						<div class="col">
+							<label for="validationServer03" class="form-label">Last
+								name</label> <input type="text" class="form-control is-valid"
+								id="validationServer03" name="lastName"
+								value="<%=rs.getString("lastName")%>" required />
+							<div class="valid-feedback">Looks good!</div>
+						</div>
+
 					</div>
 
 					<div class="col-md-5">
 						<div class="container">
 							<div class="row">
-								<div class="col-md-5">
+								<div class="col d-flex flex-column justify-content-center align-items-center ">
 									<label for="validationServer08" class="form-label">
-										Image</label> <img src="<%=rs.getString("warden_image")%>"
-										class="img-thumbnail" alt="...">
+										Existing Image</label>
+										 <br> <img style="height: 10rem; width: 10rem; border-radius: 50%"
+										src="<%=rs.getString("warden_image")%>" class="img-thumbnail"
+										alt="...">
 								</div>
 							</div>
 
@@ -99,7 +124,6 @@ if(session.getAttribute("user") == null){
 							required>
 							<option selected value="<%=rs.getString("year_id")%>"><%=rs.getString("year_name")%></option>
 							<%
-
 							pstm2 = con.prepareStatement("select * from acc_year where acc_year.id <> " + rs.getString("year_id"));
 							rs2 = pstm2.executeQuery();
 							while (rs2.next()) {
@@ -178,8 +202,9 @@ if(session.getAttribute("user") == null){
 						<div class="valid-feedback">Looks good!</div>
 					</div>
 					<div class="col-md-6">
-						<label for="validationServer06" class="form-label">Warden Status</label>
-						<select class="form-select is-invalid" id="validationServer06"
+						<label for="validationServer06" class="form-label">Warden
+							Status</label> <select class="form-select is-invalid"
+							id="validationServer06"
 							aria-describedby="validationServer06Feedback" name="wardenStatus"
 							required>
 							<option selected value="unavailable">unavailable</option>
@@ -188,7 +213,7 @@ if(session.getAttribute("user") == null){
 						<div id="validationServer06Feedback" class="invalid-feedback">
 							Please select a valid state.</div>
 					</div>
-					
+
 					<div class="col-12">
 						<button class="btn btn-primary" type="submit">Update</button>
 					</div>

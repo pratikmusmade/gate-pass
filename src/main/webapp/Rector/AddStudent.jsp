@@ -6,8 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-if(session.getAttribute("user") == null){
-	  response.sendRedirect("RectorLogin.jsp"); 
+if (session.getAttribute("user") == null) {
+	response.sendRedirect("RectorLogin.jsp");
 }
 %>
 <!DOCTYPE html>
@@ -30,25 +30,23 @@ if(session.getAttribute("user") == null){
 			<div class="col-lg-2"></div>
 			<div class="col-lg-8">
 				<h1>Add Student</h1>
-
-
-
-				<form class="row g-3" novalidate method="post" name="myForm" id="addWaredn"
-					enctype="multipart/form-data">
+				<form class="row g-3" method="post" name="myForm"
+					id="addWaredn" enctype="multipart/form-data">
 					<div class="col-md-4">
 						<label for="validationServer01" class="form-label">First
 
 							name</label> <input type="text" class="form-control"
-							id="validationServer01" name="firstName"  onblur="validate(event,'fname-validation')" required />
-							<small
-								class="text-danger" id="fname-validation"></small>
+							id="validationServer01" name="firstName"
+							onblur="validate(event,'fname-validation')" required /> <small
+							class="text-danger" id="fname-validation"></small>
 					</div>
 					<div class="col-md-4">
 						<label for="validationServer02" class="form-label">Middle
-							name</label> <input type="text" class="form-control" id="validationServer02" name="middleName"
-				onblur="validate(event,'midName-validation')" required /> <small
+							name</label> <input type="text" class="form-control"
+							id="validationServer02" name="middleName"
+							onblur="validate(event,'midName-validation')" required /> <small
 							class="text-danger" id="midName-validation"></small>
-												</div>
+					</div>
 
 					<div class="col-md-4">
 						<label for="validationServer03" class="form-label">Last
@@ -56,22 +54,22 @@ if(session.getAttribute("user") == null){
 							id="validationServer03" name="lastName"
 							onblur="validate(event,'lastName-validation')" required /> <small
 							class="text-danger" id="lastName-validation"></small>
-										</div>
+					</div>
 
 					<div class="col-md-6">
 						<label for="validationServer04" class="form-label">Enrollment
-							Number</label> <input type="number" class="form-control "
+							Number</label> <input type="text" class="form-control "
 							id="validationServer04" name="enrollmentNumber"
 							onblur="validate(event,'enrollmentNumber-validation')" required />
 						<small class="text-danger" id="enrollmentNumber-validation"></small>
-						</div>
+					</div>
 
 					<div class="col-md-3">
 						<label for="validationServer05" class="form-label">Year</label> <select
 							class="form-select " id="validationServer05"
 							aria-describedby="validationServer05Feedback" name="yearId"
 							onblur="validate(event,'year-validation')" required>
-													<option selected disabled value="">Select Year</option>
+							<option selected disabled value="">Select Year</option>
 							<%
 							pstm = con.prepareStatement("select * from acc_year");
 							rs = pstm.executeQuery();
@@ -85,7 +83,7 @@ if(session.getAttribute("user") == null){
 						<div id="validationServer05Feedback" class="invalid-feedback">
 							Please select a valid Year.</div>
 						<small class="text-danger" id="year-validation"></small>
-						
+
 					</div>
 
 					<div class="col-md-3">
@@ -93,7 +91,7 @@ if(session.getAttribute("user") == null){
 						<select class="form-select " id="validationServer06"
 							aria-describedby="validationServer06Feedback" name="branchId"
 							onblur="validate(event,'branch-validation')" required>
-													<option selected disabled value="">Select Branch</option>
+							<option selected disabled value="">Select Branch</option>
 							<%
 							pstm = con.prepareStatement("select * from branch");
 							rs = pstm.executeQuery();
@@ -105,7 +103,7 @@ if(session.getAttribute("user") == null){
 							%>
 						</select> <small class="text-danger" id="branch-validation"></small>
 					</div>
-						
+
 
 					<div class="col-md-6">
 						<label for="validationServer07" class="form-label">Phone
@@ -113,7 +111,7 @@ if(session.getAttribute("user") == null){
 							id="validationServer07" name="phoneNumber"
 							onblur="validate(event,'phone-validation')" required /> <small
 							class="text-danger" id="phone-validation"></small>
-											</div>
+					</div>
 
 
 					<div class="col-md-6">
@@ -122,7 +120,7 @@ if(session.getAttribute("user") == null){
 							id="validationServer08" name="studentImage"
 							onblur="validate(event,'studImg-validation')" required /> <small
 							class="text-danger" id="studImg-validation"></small>
-									</div>
+					</div>
 
 
 
@@ -135,10 +133,10 @@ if(session.getAttribute("user") == null){
 					Please provide valid email-id.</div>
 							class="text-danger" id="email-validation"></small>
 
-													</div>
+					</div>
 
 
-					<div class="col-md-6" style="margin-left:140px">
+					<div class="col-md-6" style="margin-left: 140px">
 						<label for="validationPassword" class="form-label">Password</label>
 						<input type="password" class="form-control "
 							id="validationPassword"
@@ -147,9 +145,9 @@ if(session.getAttribute("user") == null){
 						<div id="validationServer03Feedback" class="invalid-feedback">
 						</div>
 						<small class="text-danger" id="password-validation"></small>
-								</div>
+					</div>
 
-					<div class="col-md-6" style="margin-left:140px">
+					<div class="col-md-6" style="margin-left: 140px">
 						<label for="floatingTextarea" class="form-label">Enter
 							Address</label>
 						<div class="form-floating">
@@ -160,7 +158,7 @@ if(session.getAttribute("user") == null){
 						<small class="text-danger" id="address-validation"></small>
 					</div>
 
-					<div class="col-12 mt-3"style="margin-left:140px">
+					<div class="col-12 mt-3" style="margin-left: 140px">
 						<button class="btn btn-primary" type="submit">Submit form</button>
 					</div>
 
@@ -203,15 +201,12 @@ if(session.getAttribute("user") == null){
 				});
 			});
 		});
-		
-		
-		
 		const firstName = document.myForm.firstName
 	    const middleName = document.myForm.middleName
 	    const lastName= document.myForm.lastName
 	    const enrollmentNumber= document.myForm.enrollmentNumber
 	    const yearId = document.myForm.yearId
-	   const branchId = document.myForm.branchId
+	   	const branchId = document.myForm.branchId
 	    const phoneNumber = document.myForm.phoneNumber
 	    const studentImage = document.myForm.studentImage
 	    const email = document.myForm.email
@@ -219,7 +214,7 @@ if(session.getAttribute("user") == null){
 	    const address = document.myForm.address
 	    const nameRegex = /^[a-zA-Z]+$/;
 	  	const emailRegex = /@/;
-	  const	phoneNumberRegex = /^\d{10}$/
+	  	const phoneNumberRegex = /^\d{10}$/
 
 
 
@@ -230,8 +225,7 @@ function validate(event,targetedValue){
 	 
  		if(targetedValue === "email-validation")
 		{
- 			
- 			
+
 			 if(emailRegex.test(event.target.value)){
 				 
 	 	     	    valid(targetedValue)
@@ -291,9 +285,6 @@ function validate(event,targetedValue){
  }
 
 }
-
-
-
 
 function invalid(targetedValue,msg){
  

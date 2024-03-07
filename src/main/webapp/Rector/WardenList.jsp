@@ -7,8 +7,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-if(session.getAttribute("user") == null){
-	  response.sendRedirect("RectorLogin.jsp"); 
+if (session.getAttribute("user") == null) {
+	response.sendRedirect("RectorLogin.jsp");
 }
 %>
 <!DOCTYPE html>
@@ -34,9 +34,11 @@ if(session.getAttribute("user") == null){
 				<form method="post" id="filter-form">
 					<div class="container-fulid">
 						<div class="row mt-4 mb-3">
-	<h1 class="text-white">Warden List</h1>
+							<h1 class="text-white">Warden List</h1>
 
-							<div class="col-lg-7"></div>
+							<div class="col-lg-7">
+							
+							</div>
 							<div class="col-lg-2 ">
 								<select class="form-select" aria-label="Default select example"
 									name="branch_id">

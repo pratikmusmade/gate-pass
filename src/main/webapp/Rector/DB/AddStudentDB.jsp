@@ -13,7 +13,7 @@
  
  String path = "C://Users//prati//eclipse-workspace//GatePass//src//main//webapp//assects//images";
  
-String query = "insert into student(firstName, middleName, lastName, enrolment_number, address, email, pass, student_image, branch_id, year_id) values (?,?,?,?,?,?,?,?,?,?)";
+String query = "INSERT INTO student (firstName, middleName, lastName, enrolment_number, address, phone_number, email, pass, student_image, branch_id, year_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 MultipartRequest m = new MultipartRequest(request, path, 1024 * 1024 * 1024);
 Connection con = ConnectionProvider.getConnection();
 
@@ -36,11 +36,13 @@ pstmt.setString(2, middleName);
 pstmt.setString(3, lastName);
 pstmt.setString(4, enrollNo);
 pstmt.setString(5, address);
-pstmt.setString(6, email);
-pstmt.setString(7, password);
-pstmt.setString(8, student_img);
-pstmt.setString(9, branchId);
-pstmt.setString(10, yearId);
+pstmt.setString(6, phoneNumber);
+pstmt.setString(7, email);
+
+pstmt.setString(8, password);
+pstmt.setString(9, student_img);
+pstmt.setString(10, branchId);
+pstmt.setString(11, yearId);
 
 out.print(pstmt.executeUpdate());
 %>
