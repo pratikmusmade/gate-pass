@@ -128,10 +128,10 @@ if (session.getAttribute("user") == null) {
 						<label for="validationEmail" class="form-label">Email</label> <input
 							type="email" class="form-control " id="validationEmail"
 							aria-describedby="validationServer03Feedback" name="email"
-							onblur="validate(event,'email-validation')" required /> <small
+							onblur="validate(event,'email-validation')" required /> 
 							<div id="validationServer03Feedback" class="invalid-feedback">
 					Please provide valid email-id.</div>
-							class="text-danger" id="email-validation"></small>
+						<small	class="text-danger" id="email-validation"></small>
 
 					</div>
 
