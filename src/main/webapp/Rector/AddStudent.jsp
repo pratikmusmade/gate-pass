@@ -58,7 +58,7 @@ if (session.getAttribute("user") == null) {
 
 					<div class="col-md-6">
 						<label for="validationServer04" class="form-label">Enrollment
-							Number</label> <input type="text" class="form-control "
+							Number</label> <input type="number" class="form-control "
 							id="validationServer04" name="enrollmentNumber"
 							onblur="validate(event,'enrollmentNumber-validation')" required />
 						<small class="text-danger" id="enrollmentNumber-validation"></small>

@@ -4,6 +4,9 @@
 <%@page import="java.sql.Connection"%>
 <%
 String keyStatus = request.getParameter("keyStatus");
+String branchId = request.getParameter("branchId");
+branchId = branchId.equals("0") ? "" : branchId;
+branchId = (!branchId.isEmpty()) ? " and student.branch_id='" + branchId + "'" : "";
 String sqlQuery = "SELECT " + "student.id AS student_id, " + "student.firstName AS student_firstName, "
 		+ "student.middleName AS student_middleName, " + "student.lastName AS student_lastName, "
 		+ "student.enrolment_number AS student_enrolment_number, " + "student.address AS student_address, "
@@ -16,9 +19,13 @@ String sqlQuery = "SELECT " + "student.id AS student_id, " + "student.firstName 
 		+ "gatepass.request_id AS gatepass_request_id, " + "gatepass.secret_key AS gatepass_secret_key, "
 		+ "gatepass.secret_key_status AS gatepass_secret_key_status, " + "gatepass.out_time AS gatepass_out_time, "
 		+ "gatepass.in_time AS gatepass_in_time " + "FROM " + "student " + "INNER JOIN "
-		+ "request ON student.id = request.student_id " + "INNER JOIN " + "gatepass ON request.id = gatepass.request_id "
-		+ "where request.status <> 'rejected' and gatepass.secret_key_status = ?";
-Connection con = ConnectionProvider.getConnection();
+		+ "request ON student.id = request.student_id " + "INNER JOIN "
+		+ "gatepass ON request.id = gatepass.request_id "
+		+ "where request.status <> 'rejected' and gatepass.secret_key_status = ? " + branchId;
+
+
+/* out.println(sqlQuery);
+ */ Connection con = ConnectionProvider.getConnection();
 PreparedStatement stmt = con.prepareStatement(sqlQuery);
 stmt.setString(1,keyStatus);
 ResultSet rs = stmt.executeQuery();
@@ -28,8 +35,9 @@ while (rs.next()) {
 	String studentFullName = rs.getString("student_firstName") + " " + rs.getString("student_middleName") + " "
 	+ rs.getString("student_lastName");
 	String status = rs.getString("gatepass_secret_key_status");
-	String uniqueFormId = "verifySecrateKey" + i;
+	String uniqueFormId = "verifySecrateKey" + i; 
 %>
+
 <tr>
 	<td><%=i%></td>
 	<td><%=rs.getString("student_firstName")%> <%=rs.getString("student_middleName")%>
@@ -38,7 +46,7 @@ while (rs.next()) {
 		class="border border-light" alt="..."
 		style="height: 60px; width: 60px; border-radius: 100%"></td>
 	<td><%=rs.getString("student_email")%></td>
-	<td><%=rs.getString("request_request_date")%></td>
+		<td><%=rs.getString("request_request_date")%></td>
 	<td><%=status%></td>
 	<td class="px-0">
 		<%

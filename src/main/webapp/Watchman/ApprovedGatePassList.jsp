@@ -5,8 +5,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%
-if(session.getAttribute("user") == null){
-	  response.sendRedirect("WatchmanLogin.jsp"); 
+if (session.getAttribute("user") == null) {
+	response.sendRedirect("WatchmanLogin.jsp");
 }
 %>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ if(session.getAttribute("user") == null){
 </head>
 <body style="background-image: url('../assects/images/circle.svg')"
 	style="background-repeat:norepeat">
-<jsp:include page="../Components/WatchmanNavBar.jsp"></jsp:include>
+	<jsp:include page="../Components/WatchmanNavBar.jsp"></jsp:include>
 	<div class="container mt-3">
 		<div class="row m-0">
 			<div class="col">
@@ -49,16 +49,38 @@ if(session.getAttribute("user") == null){
 			</div>
 		</div>
 		<!-- 		View Request Model End   -->
-		<div class="row d-flex flex-row-reverse bd-highlight">
-			<div class="col-lg-4">
+		<div class="row d-flex flex-row-reverse bd-highlight g-3">
+			<div class="col-lg-6">
 				<form class="d-flex" id="filterGatePass">
 					<div class="col">
 						<select class="form-select" aria-label="Default select example"
-						name="keyStatus">
+							name="branchId">
+							<option selected value="0">Select Branch</option>
+							<%
+							Connection con = ConnectionProvider.getConnection();
+
+							PreparedStatement pstm = con.prepareStatement("select * from branch");
+							ResultSet rs = pstm.executeQuery();
+							while (rs.next()) {
+							%>
+							<option value="<%=rs.getString("id")%>"><%=rs.getString("branch_name")%></option>
+							<%
+							}
+							%>
+						
+							
+							
+						</select>
+					</div>					&nbsp &nbsp &nbsp
+					
+					<div class="col">
+						<select class="form-select" aria-label="Default select example"
+							name="keyStatus">
 							<option value="in-process">In-process</option>
 							<option value="verified">Verified</option>
 						</select>
-					</div>&nbsp &nbsp &nbsp
+					</div>
+					&nbsp &nbsp &nbsp
 					<div class="col">
 						<button class="btn btn-primary">
 							Filter <i class="bi bi-funnel-fill"></i>
@@ -83,33 +105,32 @@ if(session.getAttribute("user") == null){
 						</tr>
 					</thead>
 					<tbody id="statusResponse">
-					
-					<%
-					String sqlQuery = "SELECT " + "student.id AS student_id, " + "student.firstName AS student_firstName, "
-							+ "student.middleName AS student_middleName, " + "student.lastName AS student_lastName, "
-							+ "student.enrolment_number AS student_enrolment_number, " + "student.address AS student_address, "
-							+ "student.email AS student_email, " + "student.pass AS student_pass, "
-							+ "student.student_image AS student_image, " + "student.branch_id AS student_branch_id, "
-							+ "student.year_id AS student_year_id, " + "request.id AS request_id, " + "request.message AS request_message, "
-							+ "request.student_id AS request_student_id, " + "request.warden_id AS request_warden_id, "
-							+ "request.current_date AS request_current_date, " + "request.request_date AS request_request_date, "
-							+ "request.status AS request_status, " + "gatepass.id AS gatepass_id, "
-							+ "gatepass.request_id AS gatepass_request_id, " + "gatepass.secret_key AS gatepass_secret_key, "
-							+ "gatepass.secret_key_status AS gatepass_secret_key_status, " + "gatepass.out_time AS gatepass_out_time, "
-							+ "gatepass.in_time AS gatepass_in_time " + "FROM " + "student " + "INNER JOIN "
-							+ "request ON student.id = request.student_id " + "INNER JOIN "
-							+ "gatepass ON request.id = gatepass.request_id "
-							+ " where request.status <> 'rejected'";
-					Connection con = ConnectionProvider.getConnection();
-					PreparedStatement stmt = con.prepareStatement(sqlQuery);
-					ResultSet rs = stmt.executeQuery();
-					int i = 1;
-					while (rs.next()) {
-						String studentFullName = rs.getString("student_firstName") + " " + rs.getString("student_middleName") + " "
-						+ rs.getString("student_lastName");
-						String status = rs.getString("gatepass_secret_key_status");
-						String uniqueFormId = "verifySecrateKey" + i;
-					%>
+
+						<%
+						String sqlQuery = "SELECT " + "student.id AS student_id, " + "student.firstName AS student_firstName, "
+								+ "student.middleName AS student_middleName, " + "student.lastName AS student_lastName, "
+								+ "student.enrolment_number AS student_enrolment_number, " + "student.address AS student_address, "
+								+ "student.email AS student_email, " + "student.pass AS student_pass, "
+								+ "student.student_image AS student_image, " + "student.branch_id AS student_branch_id, "
+								+ "student.year_id AS student_year_id, " + "request.id AS request_id, " + "request.message AS request_message, "
+								+ "request.student_id AS request_student_id, " + "request.warden_id AS request_warden_id, "
+								+ "request.current_date AS request_current_date, " + "request.request_date AS request_request_date, "
+								+ "request.status AS request_status, " + "gatepass.id AS gatepass_id, "
+								+ "gatepass.request_id AS gatepass_request_id, " + "gatepass.secret_key AS gatepass_secret_key, "
+								+ "gatepass.secret_key_status AS gatepass_secret_key_status, " + "gatepass.out_time AS gatepass_out_time, "
+								+ "gatepass.in_time AS gatepass_in_time " + "FROM " + "student " + "INNER JOIN "
+								+ "request ON student.id = request.student_id " + "INNER JOIN "
+								+ "gatepass ON request.id = gatepass.request_id " + " where request.status <> 'rejected'";
+						 con = ConnectionProvider.getConnection();
+						 pstm = con.prepareStatement(sqlQuery);
+						 rs = pstm.executeQuery();
+						int i = 1;
+						while (rs.next()) {
+							String studentFullName = rs.getString("student_firstName") + " " + rs.getString("student_middleName") + " "
+							+ rs.getString("student_lastName");
+							String status = rs.getString("gatepass_secret_key_status");
+							String uniqueFormId = "verifySecrateKey" + i;
+						%>
 						<tr>
 							<td><%=i%></td>
 							<td><%=studentFullName%></td>
@@ -153,7 +174,7 @@ if(session.getAttribute("user") == null){
 						i++;
 						}
 						%>
-						
+
 					</tbody>
 				</table>
 			</div>

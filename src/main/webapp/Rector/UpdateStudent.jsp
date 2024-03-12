@@ -21,8 +21,9 @@ if (session.getAttribute("user") == null) {
 style="background-image: url('../assects/images/circle.svg')"
 	style="background-repeat:norepeat"
 >
+	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
 
-	<div class="container pt-3">
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10">
@@ -120,7 +121,7 @@ style="background-image: url('../assects/images/circle.svg')"
 						 <small class="text-danger" id="branch-validation"></small>
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-6">	
 						<label for="validationServer07" class="form-label">Phone
 							Number</label> <input type="text" class="form-control"
 							value="<%=rs.getString("phone_number") %>"

@@ -17,7 +17,12 @@ if (session.getAttribute("user") == null) {
 <title>Bootstrap demo</title>
 <jsp:include page="../Components/Header.jsp"></jsp:include>
 </head>
-<body>
+<body
+style="background-image: url('../assects/images/circle.svg')"
+	style="background-repeat:norepeat"
+
+>	<jsp:include page="../Components/RectorNavBar.jsp"></jsp:include>
+
 	<div class="container pt-3">
 		<div class="row">
 			<div class="col-lg-2"></div>
@@ -33,8 +38,8 @@ if (session.getAttribute("user") == null) {
 
 				while (rs.next()) {
 				%>
-				<h1>Update Warden</h1>
-				<form class="row g-3" method="post" id="updateWarden"
+				<h1 class="text-white mb-4">Update Warden</h1>
+				<form class="row g-3 shadow bg-dark text-white p-4" method="post" id="updateWarden"
 					enctype="multipart/form-data">
 					<div class="col-md-7">
 						<div class="col">
