@@ -95,7 +95,6 @@ if (session.getAttribute("user") == null) {
 							<th scope="col">Branch</th>
 							<th scope="col">Year</th>
 							<th scope="col">Update</th>
-							<th scope="col">Delete</th>
 						</tr>
 					</thead>
 					<tbody id="listContainer">
@@ -118,9 +117,7 @@ if (session.getAttribute("user") == null) {
 							<td><a type="button" class="btn btn-outline-warning"
 								href="UpdateWarden.jsp?wardenId=<%=rs.getString("id")%>">Update</a>
 							</td>
-							<td><a type="button" class="btn btn-outline-danger"
-								href="DB/DeleteWardenDB.jsp?wardenId=<%=rs.getString("id")%>">Delete</a>
-							</td>
+							
 						</tr>
 						<%
 						}
@@ -145,7 +142,7 @@ if (session.getAttribute("user") == null) {
 												$
 														.ajax({
 															type : 'POST',
-															url : "../Components/TableFormat.jsp",
+															url : "../Components/TableFormatForWarden.jsp",
 															data : $(
 																	"#filter-form")
 																	.serialize(),

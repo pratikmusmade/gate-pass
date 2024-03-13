@@ -25,7 +25,7 @@ System.out.println( "Image name => " +m.getFilesystemName("wardenImage"));
 Connection con = ConnectionProvider.getConnection();
 
 System.out.println("File Input ==> " + request.getParameter("wardenImage"));
-String warden_image = "../assects/images/" + m.getFilesystemName("studentImage");
+String warden_image = "../assects/images/" + m.getFilesystemName("wardenImage");
 String firstName = m.getParameter("firstName");
 String middleName = m.getParameter("middleName");
 String lastName = m.getParameter("lastName");
@@ -35,7 +35,6 @@ System.out.println("Year id ==>> " + yearId);
 String branchId = m.getParameter("branchId");
 String address = m.getParameter("address");
 String phoneNumber = m.getParameter("phoneNumber");
-String wardenStatus = m.getParameter("wardenStatus");
 String password = m.getParameter("password");
 
 PreparedStatement pstmt = con.prepareStatement(query );
@@ -47,7 +46,7 @@ pstmt.setString(4, address);
 pstmt.setString(5, email);
 pstmt.setString(6, password);
 pstmt.setString(7, phoneNumber);
-pstmt.setString(8, wardenStatus);
+pstmt.setString(8, "available");
 
 pstmt.setString(9, branchId);
 pstmt.setString(10, yearId);

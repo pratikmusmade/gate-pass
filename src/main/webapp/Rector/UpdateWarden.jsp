@@ -153,7 +153,7 @@ if (session.getAttribute("user") == null) {
 						<label for="validationServer08" class="form-label">
 										Warden Image</label> <input type="file" class="form-control "
 										id="validationServer08" name="wardenImage"
-										onblur="validate(event,'wardenImage')" required /> <small
+										onblur="validate(event,'wardenImage')" /> <small
 										class="text-danger" id="wardenImg-validation"></small>
 
 					</div>
@@ -233,11 +233,11 @@ if (session.getAttribute("user") == null) {
 						console.log(res)
 						if(res.trim() === "1"){
 							 Swal.fire({
-								 title : "Student Added Successfully",
+								 title : "Warden Updated Successfully",
 								 text : "Click ok to continue !",
 								 icon : "success"
 								 }).then(()=>{
-								window.location.reload();
+								history.back()
 								 });
 						}
 							

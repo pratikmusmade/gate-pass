@@ -34,7 +34,7 @@ pstmt.setString(5, email);
 pstmt.setString(6, password);
 pstmt.setString(7, phoneNo);
 pstmt.setString(8, student_img);
-pstmt.setString(9, "unavailable");
+pstmt.setString(9, "available");
 
 pstmt.setString(10, branchId);
 pstmt.setString(11, yearId);

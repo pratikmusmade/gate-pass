@@ -96,7 +96,6 @@ if(session.getAttribute("user") == null){
 							<th scope="col">Branch</th>
 							<th scope="col">Year</th>
 							<th scope="col">Update</th>
-							<th scope="col">Delete</th>
 						</tr>
 					</thead>
 					<tbody id="listContainer">
@@ -118,9 +117,7 @@ if(session.getAttribute("user") == null){
 							<td><%=rs.getString("year_name")%></td>
 							<td><a type="button" class="btn btn-outline-warning"
 								href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
-								<td><a type="button" class="btn btn-outline-danger"
-								href="DB/DeleteStudentDB.jsp?studentId=<%=rs.getString("id")%>">Delete</a>
-							</td>
+								</td>
 						</tr>
 						<%
 						}
@@ -135,25 +132,18 @@ if(session.getAttribute("user") == null){
 	<jsp:include page="../Components/Footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$("#filter-form")
 									.submit(
 											function(event) {
 												event.preventDefault();
-												$
-														.ajax({
+												$.ajax({
 															type : 'POST',
 															url : "../Components/TableFormat.jsp",
-															data : $(
-																	"#filter-form")
-																	.serialize(),
-
-															success : function(
-																	response) {
-																if (response
-																		.trim() === "0") {
+															data : $("#filter-form").serialize(),
+															success : function(response) {
+																console.log(response.trim())
+																if (response.trim() === "0") {
 																	Swal
 																			.fire({
 																				title : "Data not found !!",
@@ -162,9 +152,7 @@ if(session.getAttribute("user") == null){
 																			});
 																	return;
 																}
-																document
-																		.querySelector("#listContainer").innerHTML = response
-																		.trim()
+																document.querySelector("#listContainer").innerHTML = response.trim()
 															}
 														})
 											})
