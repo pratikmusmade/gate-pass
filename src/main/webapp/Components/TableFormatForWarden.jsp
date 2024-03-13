@@ -25,7 +25,7 @@ if (yearId != 0 && branchId != 0) {
 whereClause += " order by id";
 
 System.out.println(whereClause);
-String query = QueriesProvider.queryForStudentInfo;
+String query = QueriesProvider.queryForWardenInfo;
 query += whereClause;
 System.out.println(" Query ==> " + query);
 
@@ -37,23 +37,23 @@ while (rs.next()) {
 %>
 <tr>
 	<th scope="row"><%=rs.getString("id")%></th>
-	<td><img src="<%=rs.getString("student_image")%>"
+	<td><img src="<%=rs.getString("warden_image")%>"
 		class="img-thumbnail" alt="..."
 		style="height: 50px; width: 50px; border-radius: 100%"></td>
 	<td><%=rs.getString("firstName") + " " + rs.getString("middleName") + " " + rs.getString("lastName") + " "%></td>
-	<td><%=rs.getString("enrolment_number")%></td>
+	<td><%=rs.getString("phoneNumber")%></td>
 
 	<td><%=rs.getString("email")%></td>
 	<td><%=rs.getString("branch_name")%></td>
 	<td><%=rs.getString("year_name")%></td>
 	<td><a type="button" class="btn btn-outline-warning"
-		href="UpdateStudent.jsp?studentId=<%=rs.getString("id")%>">Update</a>
-	</td>
-	
+		href="UpdateWarden.jsp?wardenId=<%=rs.getString("id")%>">Update</a></td>
+
 </tr>
 <%
 }
 
-if (!isDataPrinted) out.print("0");
+if (!isDataPrinted)
+out.print("0");
 %>
 
